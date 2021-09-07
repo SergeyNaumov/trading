@@ -49,6 +49,7 @@
         <tr>
           <th scope="col" v-for="(h,idx) in header_list" :key="h">
             <a href="" @click.prevent="set_sort(idx)">{{h.header}}</a>
+            <span v-if="h.tooltip">&nbsp;<a href="">?</a></span>
           </th>
         </tr>
       </thead>
