@@ -1,25 +1,46 @@
 <template>
   <div>
     <h1>Поиск акций</h1>
-    <small>
-      <a href="" @click.prevent="show_cols=!show_cols">вкл / выкл столбцы</a> |
-      <a href="" @click.prevent="show_search=!show_search">поиск по параметрам</a>
-    </small>
+
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a href="" class="nav-link" @click.prevent="show_cols=!show_cols">столбцы</a>
+    
+  </li>
+  <li class="nav-item">
+    <a href="" class="nav-link" @click.prevent="show_search=!show_search">фильтры</a>
+  </li>
+
+</ul>
     <div class="row show_cols" v-if="show_cols"> 
       <div class="col-md-2" v-for="k in key_list" :key="k">
         <input type="checkbox" v-model="k.on" @change="gen_list_sorted"> {{k.header}}
       </div>
     </div>
     
-    <div v-if="show_search" class="row show_search">
-      <div class="col-md-4" >
-          Наименование:<br><input type="text" class="form_control" v-model="search_filter.header" @keyup="gen_list_sorted">
+    <div v-if="show_search" class="show_search">
+      <div class="row">
+        <div class="col-md-4" >
+            Наименование:<br><input type="text" class="form_control" v-model="search_filter.header" @keyup="gen_list_sorted">
+        </div>
+
       </div>
-      <div class="col-md-8" >
-        P/E:<br>
-        <input type="number" class="form_control" v-model="search_filter.pe[0]" @keyup="gen_list_sorted">  - 
-        <input type="number" class="form_control" v-model="search_filter.pe[1]" @keyup="gen_list_sorted">
-        {{search_filter.pe}}
+      <div class="row">
+        <div class="col-md-3" >
+          P/E:<br>
+          <input type="number" class="form_control" v-model="search_filter.pe[0]" @keyup="gen_list_sorted">  - 
+          <input type="number" class="form_control" v-model="search_filter.pe[1]" @keyup="gen_list_sorted">
+        </div>
+        <div class="col-md-3" >
+          P/S:<br>
+          <input type="number" class="form_control" v-model="search_filter.ps[0]" @keyup="gen_list_sorted">  - 
+          <input type="number" class="form_control" v-model="search_filter.ps[1]" @keyup="gen_list_sorted">
+        </div>
+        <div class="col-md-3" >
+          P/B:<br>
+          <input type="number" class="form_control" v-model="search_filter.pb[0]" @keyup="gen_list_sorted">  - 
+          <input type="number" class="form_control" v-model="search_filter.pb[1]" @keyup="gen_list_sorted">
+        </div>
       </div>
     </div>
 
@@ -94,7 +115,7 @@ export default {
       for(let k in this.key_list){
         if(this.key_list[k].on){
           if(k=='header'){
-            td_values.push(`<a href="https://smart-lab.ru${c['fundamental_link']}" target="_blank">${c[k]}</a>`)
+            td_values.push(`<a href="https://smart-lab.ru${c['fundamental_link']}" target="_blank">${c[k]}</a> <sup>${c['sticker']}</sup>`)
           }
           else{
             td_values.push(c[k])
@@ -181,7 +202,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .show_cols {border: 1px solid gray; font-size: 0.7rem; border-radius: 5px; margin-bottom: 10px; padding: 10px;}
+
+  .show_cols, .show_search {border: 1px solid gray; font-size: 0.7rem; border-radius: 5px; margin-bottom: 10px; padding: 10px;}
+  .show_search input[type=text]{ margin-bottom: 10px; }
+  .show_search input[type=number]{ width: 60px; }
   table th {vertical-align: top;}
   table th, table td {font-size: 0.7rem;}
+  table th a {color: black;}
 </style>

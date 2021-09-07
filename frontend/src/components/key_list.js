@@ -3,10 +3,10 @@ export const key_list={
     header:'Наименование',
     on: true
   },
-  sticker: {
-    header:'Стикер',
-    on: false
-  },
+  // sticker: {
+  //   header:'Стикер',
+  //   on: false
+  // },
   market_cap: {
     header:'Капитализация, млрд руб',
     on:false

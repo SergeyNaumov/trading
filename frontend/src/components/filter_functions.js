@@ -7,19 +7,20 @@ export function search_param_ok(c, SF){
   if(sf_header && !c.header.toLowerCase().includes(sf_header) && !c.sticker.toLowerCase().includes(SF.header) ){
     ok=false
   }
+  
   // числовые фильтры
-  let digit_filters=['pe'] // ,'ps','pb'
+  let digit_filters=['pe','ps','pb'] // 
   for(let f of digit_filters){
     
-    if(SF[f][0]!=undefined){
-      //console.log(f, SF[f][0], (c[f]<SF[f][0]) ,c.header)
+    if(SF[f][0]!=false){
+      
       if(c[f]<SF[f][0]){
         
         return false
       }
     }
     
-    if(SF[f][1]!=undefined){
+    if(SF[f][1]!=false){
       
       if(c[f] > SF[f][1]){
         
