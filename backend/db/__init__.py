@@ -31,4 +31,6 @@ db=FreshDB(
   host=connect['host'],
 )
 
+db_read=db
+db_write=db
 
