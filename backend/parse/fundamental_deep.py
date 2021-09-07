@@ -12,7 +12,7 @@ url='https://smart-lab.ru/'
 comp_list=db.get(
   table='company',
   select_fields='id,fundamental_link,header',
-
+  #where='id>19'
 
 )
 for c in comp_list:

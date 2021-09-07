@@ -60,10 +60,10 @@ def get_indicator(db,comp,years_hash,table,field_attr,indicator_name):
 
       
       value=re.sub("[^0-9\.]", "", value)
-
-      db_save(db,{
-        'company_id':comp['id'],'year': years_hash[j],'value': value,'fin_indicator': indicator_name
-      })
+      if value:
+        db_save(db,{
+          'company_id':comp['id'],'year': years_hash[j],'value': value,'fin_indicator': indicator_name,
+        })
 
     j+=1
 
