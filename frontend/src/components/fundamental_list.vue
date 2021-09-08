@@ -64,11 +64,11 @@
 
 <script>
 import {httpGET} from '/src/javascript/fetch'
-import {key_list} from './key_list'
-import {search_param_ok, dynamic_style} from './filter_functions'
+import {key_list} from './fundamental_list/key_list'
+import {search_param_ok, dynamic_style} from './fundamental_list/filter_functions.js'
 
 export default {
-  name: 'fundamental_list',
+  name: 'FundamentalList',
   props: {
     
   },
@@ -116,7 +116,9 @@ export default {
       for(let k in this.key_list){
         if(this.key_list[k].on){
           if(k=='header'){
-            td_values.push(`<a href="https://smart-lab.ru${c['fundamental_link']}" target="_blank">${c[k]}</a> <sup>${c['sticker']}</sup>`)
+            // let url=`https://smart-lab.ru${c['fundamental_link']}`
+            let url='/fundamental/'+c.id
+            td_values.push(`<a href="${url}" target="_blank">${c[k]}</a> <sup>${c['sticker']}</sup>`)
           }
           else{
             td_values.push(c[k])

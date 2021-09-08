@@ -1,17 +1,20 @@
 <template>
   <div class="container">
-    <FundamentalList/>
+    <router-view/>
   </div>
   
 </template>
 
 <script>
-import FundamentalList from './components/fundamental_list.vue'
+
+
+
+
 
 export default {
   name: 'App',
   components: {
-    FundamentalList
+    //FundamentalList
   }
 }
 </script>

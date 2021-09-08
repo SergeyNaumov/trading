@@ -3,7 +3,7 @@ create table report(
   header varchar(255) not null default ''
 ) engine=innodb default charset=utf8;
 # Компании
-drop table company;
+
 create table company(
   id int unsigned primary key auto_increment,
   header varchar(255) not null default '',
@@ -25,7 +25,7 @@ create table company(
   fundamental_link varchar(255) not null default '',
   unique key(sticker)
 ) engine=innodb default charset=utf8 comment 'компании и фундаментальные показатели';
-drop table company_year;
+
 create table company_year(
   company_id int unsigned not null,
   year int unsigned,
@@ -34,6 +34,26 @@ create table company_year(
   primary key(company_id,year,fin_indicator)
 ) engine=innodb default charset=utf8 comment 'Таблица с финансовыми показателями по годам';
 
+create table fin_indicator(
+  indicator varchar(20) not null primary key,
+  header varchar(255) not null default ''
+) engine=innodb default charset=utf8;
+
+INSERT INTO fin_indicator values
+('pe','P/E'),
+('ps','P/S'),
+('p_bv','P/BV'),
+('ev_ebitda','EV/EBITDA'),
+('debt_ebitda','Долг/EBITDA'),
+('capex','CAPEX, млрд руб'),
+('opex','Операционные расходы, млрд руб'),
+('revenue','Выручка, млрд руб'),
+('assets','Активы, млрд руб'),
+('net_assets','Чистые активы, млрд руб'),
+('debt','долг, млрд руб'),
+('net_debt','чистый долг'),
+('common_share','Цена акции'), 
+('cash','Наличность');
 fin_indicator:
   pe: P/E
   ps: P/S
