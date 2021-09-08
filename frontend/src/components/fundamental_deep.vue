@@ -1,11 +1,16 @@
 <template>
   <h1>{{comp.header}} <sup>{{comp.sticker}}</sup></h1>
+  <div>
+    <a :href="'https://smart-lab.ru/gr/MOEX.'+comp.sticker" target="_blank">Онлайн-график</a>
+  </div>
   <div class="row">
-    <div class="col-md-4" v-for="(i,idx) in indicator_list" :key="idx">
-      <LineDiagram :list="indicators[i.indicator]" v-if="indicators[i.indicator]" :description="i.header"/>
+    <template v-for="(i,idx) in indicator_list">
+    <div class="col-md-4"  :key="idx" v-if="indicators[i.indicator]">
+      <LineDiagram :list="indicators[i.indicator]"  :description="i.header"/>
       
       
     </div>
+    </template>
   </div>  
   
 
