@@ -4,11 +4,11 @@
 
 <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a href="" class="nav-link" @click.prevent="show_cols=!show_cols">столбцы</a>
+    <a href="" class="nav-link" @click.prevent="show_cols=!show_cols"><i class="fas fa-table"></i></a>
     
   </li>
   <li class="nav-item">
-    <a href="" class="nav-link" @click.prevent="show_search=!show_search">фильтры</a>
+    <a href="" class="nav-link" @click.prevent="show_search=!show_search"><i class="fas fa-filter"></i></a>
   </li>
 
 </ul>

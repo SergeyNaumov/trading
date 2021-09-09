@@ -74,22 +74,38 @@ REPLACE INTO fin_indicator(indicator,header,sort) values
 ('bv_share','BV/акцию, руб',175), 
 ('eps','EPS, руб',180);
 
-fin_indicator:
-  pe: P/E
-  ps: P/S
-  p_bv: P/BV
-  ev_ebitda: EV/EBITDA
-  debt_ebitda: Долг/EBITDA
-  capex: CAPEX, млрд руб
-  opex: Операционные расходы, млрд руб
-  revenue: Выручка, млрд руб
-  assets: Активы, млрд руб
-  net_assets: Чистые активы, млрд руб
-  debt: долг, млрд руб
-  cash --  Наличность
-  net_debt -- чистый долг
-  common_share -- Цена акции 
-  cash --  Наличность
-  net_debt -- чистый долг
-  common_share -- Цена акции 
-  number_of_shares -- Число акций, млн
+-- fin_indicator:
+--   pe: P/E
+--   ps: P/S
+--   p_bv: P/BV
+--   ev_ebitda: EV/EBITDA
+--   debt_ebitda: Долг/EBITDA
+--   capex: CAPEX, млрд руб
+--   opex: Операционные расходы, млрд руб
+--   revenue: Выручка, млрд руб
+--   assets: Активы, млрд руб
+--   net_assets: Чистые активы, млрд руб
+--   debt: долг, млрд руб
+--   cash --  Наличность
+--   net_debt -- чистый долг
+--   common_share -- Цена акции 
+--   cash --  Наличность
+--   net_debt -- чистый долг
+--   common_share -- Цена акции 
+--   number_of_shares -- Число акций, млн
+
+
+
+--   
+drop table finam_stock;
+create table finam_stock(
+  id int unsigned primary key comment 'em на finam',
+  sticker varchar(30) not null default '' comment 'code на finam',
+  finam_code varchar(50) not null default '',
+  currency varchar(10) not null default '',
+  price_change decimal(6,2)  comment 'изменение цены, %',
+  price decimal(15,6) unsigned,
+  last_update timestamp,
+  unique key(finam_code)
+) engine=innodb default charset=utf8;
+
