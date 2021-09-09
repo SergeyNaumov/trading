@@ -60,7 +60,7 @@ export const key_list={
   },
   debt_ebitda:{
     header:'Долг/EBITDA',
-    on:false
+    on:true
   }
 
 }

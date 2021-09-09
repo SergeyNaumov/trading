@@ -19,6 +19,7 @@ def parse_fundamental_deep(db,comp):
   years_hash=get_years_hash(table)
   
   get_indicator(db,comp,years_hash,table,'p_e','pe')
+  get_indicator(db,comp,years_hash,table,'p_s','ps')
   get_indicator(db,comp,years_hash,table,'capex','capex')
   get_indicator(db,comp,years_hash,table,'opex','opex')
   get_indicator(db,comp,years_hash,table,'assets','assets')
@@ -28,12 +29,23 @@ def parse_fundamental_deep(db,comp):
   get_indicator(db,comp,years_hash,table,'net_debt','net_debt')
   get_indicator(db,comp,years_hash,table,'common_share','common_share')
   get_indicator(db,comp,years_hash,table,'number_of_shares','number_of_shares')
+  get_indicator(db,comp,years_hash,table,'revenue','revenue')
+  get_indicator(db,comp,years_hash,table,'net_income','net_income')
+  get_indicator(db,comp,years_hash,table,'dividend_payout','dividend_payout')
+  get_indicator(db,comp,years_hash,table,'div_yield','div_yield')
+  get_indicator(db,comp,years_hash,table,'div_yield_priv','div_yield_priv')
+  get_indicator(db,comp,years_hash,table,'market_cap','market_cap')
+  get_indicator(db,comp,years_hash,table,'ev','ev')
+  get_indicator(db,comp,years_hash,table,'bv_share','bv_share')
+  get_indicator(db,comp,years_hash,table,'eps','eps')
+  get_indicator(db,comp,years_hash,table,'capital','capital')
+  
   '''
 
   '''
   get_indicator(db,comp,years_hash,table,'roe','roe')
   get_indicator(db,comp,years_hash,table,'roa','roa')
-  get_indicator(db,comp,years_hash,table,'p_s','ps')
+  
   get_indicator(db,comp,years_hash,table,'p_bv','p_bv')
   get_indicator(db,comp,years_hash,table,'ev_ebitda','ev_ebitda')
   get_indicator(db,comp,years_hash,table,'debt_ebitda','debt_ebitda')

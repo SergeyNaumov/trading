@@ -1,0 +1,9 @@
+https://financemarker.ru/stocks/MOEX/GAZP -- финансовые показатели
+
+https://ycharts.com/companies/SBRCY/pe_ratio -- Свежее p/e
+
+https://www.moex.com/ru/issue.aspx?board=TQBR&code=SBER -- инфа с мосбиржи
+
+https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER.jsonp?iss.meta=off&iss.only=marketdata&lang=ru&_=1631129158368 -- проанализировать
+
+p/e=eps/цена акции

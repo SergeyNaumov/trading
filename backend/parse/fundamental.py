@@ -12,10 +12,7 @@ url='https://smart-lab.ru/q/shares_fundamental/'
 response = requests.get(url)
 #print('response:',response.text)
 bs_content = bs(response.text, 'lxml')
-table=bs_content.find('table', class_='trades-table')
-
-# заголовки таблицы
-th_list=table.find_all('th')
+table_list=bs_content.find_all('table', class_='trades-table')
 
 fields={
   1: 'header', # название
@@ -36,50 +33,58 @@ fields={
   17: 'report_name'
 }
 
-#i=0
-# для проверки th
-# for th in th_list:
-#   if i in fields:
-#     field_name=fields[i]
-#     print(f'''{i}, ({field_name}) => {th}''')
-#   i+=1
 
-tr_list=table.find_all('tr')
-tr_num=0
-for tr in tr_list:
-  
-  td_list=tr.find_all('td')
+for table in table_list:
+  # заголовки таблицы
+  th_list=table.find_all('th')
 
-  tr_num+=1
-  if tr_num==1: continue
-  
-  i=0
-  data={}
-  for td in td_list:
-    field_name=''
-    value=td.string
 
-    if i in fields:
-      field_name=fields[i]
-      if field_name=='report_name':
-        data['report_id']=get_report_id(db,value)
-      elif field_name=='fundamental_link':
-        data['fundamental_link']=td.find('a')['href']
-        data['sticker']=data['fundamental_link'].split('/')[2]
+
+  #i=0
+  # для проверки th
+  # for th in th_list:
+  #   if i in fields:
+  #     field_name=fields[i]
+  #     print(f'''{i}, ({field_name}) => {th}''')
+  #   i+=1
+
+  tr_list=table.find_all('tr')
+  tr_num=0
+  for tr in tr_list:
+    
+    td_list=tr.find_all('td')
+
+    tr_num+=1
+    if tr_num==1: continue
+    
+    i=0
+    data={}
+    for td in td_list:
+      field_name=''
+      value=td.string
+
+      if i in fields:
+        field_name=fields[i]
+        if field_name=='report_name':
+          data['report_id']=get_report_id(db,value)
+        elif field_name=='fundamental_link':
+          data['fundamental_link']=td.find('a')['href']
+          data['sticker']=data['fundamental_link'].split('/')[2]
+          
+        elif value:
+          if not (field_name in ('header')):
+            value=value.replace(' ', '')
+            value=value.replace('%', '')
+          data[field_name]=value
         
-      elif value:
-        if not (field_name in ('header')):
-          value=value.replace(' ', '')
-          value=value.replace('%', '')
-        data[field_name]=value
-      
-      
+        
 
-    #print(f''' {i}, ({field_name}) => {td} / {value}''')
+      #print(f''' {i}, ({field_name}) => {td} / {value}''')
 
-    i+=1
-
-  save_company(db,data)
-  #quit()
+      i+=1
+    #print(data)
+    #quit()
+    save_company(db,data)
+    #quit()
 
 

@@ -1,7 +1,11 @@
 <template>
   <h1>{{comp.header}} <sup>{{comp.sticker}}</sup></h1>
   <div>
-    <a :href="'https://smart-lab.ru/gr/MOEX.'+comp.sticker" target="_blank">Онлайн-график</a>
+    <small>
+      <a :href="'https://smart-lab.ru/gr/MOEX.'+comp.sticker" target="_blank">онлайн-график</a> | 
+      <a :href="`https://smart-lab.ru/q/${comp.sticker}/dividend/`" target="_blank">информация о дивидендах</a> |
+      <a :href="`https://smart-lab.ru/q/${comp.sticker}/f/y/`" target="_blank">фундаментальный анализ</a>
+    </small>
   </div>
   <div class="row">
     <template v-for="(i,idx) in indicator_list">

@@ -45,5 +45,16 @@ export function dynamic_style(name,v){
   if(name=='div_payout_ratio' && (v>8) ){
       return {'font-weight':'bold',color:'green'}
   }
+  if(name=='debt_ebitda'){
+    if(v<0.2){
+      return {color:'green'}
+    }
+    else if(v>0.5 && v<1){
+      return {color:'orange','font-weight':'bold'}
+    }
+    else if(v>=1){
+      return {color:'red','font-weight':'bold'}
+    }
+  }
   return ''
 }

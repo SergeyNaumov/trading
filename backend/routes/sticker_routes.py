@@ -32,7 +32,7 @@ async def get_fundamental(id: int):
 
     indicators[f['fin_indicator']].append({'year':f['year'],'v':f['value']})
 
-  indicator_list=db.get(table='fin_indicator')
+  indicator_list=db.query(query='select * from fin_indicator order by sort',)
 
   return {
     'success':True,
