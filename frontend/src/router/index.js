@@ -11,7 +11,7 @@ const routes=[
     component: FundamentalList
   },
   {
-    path:'/fundamental/:id',
+    path:'/fundamental/:sticker',
     name:'FundamentalDeep',
     component: FundamentalDeep
   }

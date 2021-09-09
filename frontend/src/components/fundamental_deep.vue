@@ -29,7 +29,7 @@ export default {
   components:{ LineDiagram },
   data(){
     return {
-      id:false,
+      sticker:false,
 
       comp:{},
       indicators:{},
@@ -38,13 +38,13 @@ export default {
     }
   },
   created(){
-    this.id=this.$route.params.id
+    this.sticker=this.$route.params.sticker
     this.get()
   },
   methods:{
     get(){
       httpGET({
-        url:'/sticker/fundamental/'+this.id,
+        url:'/sticker/fundamental/'+this.sticker,
         success:(data)=>{
           this.comp=data.comp
           this.indicators=data.indicators

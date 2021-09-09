@@ -64,7 +64,7 @@
 
 <script>
 import {httpGET} from '/src/javascript/fetch'
-import {key_list} from './fundamental_list/key_list'
+//import {key_list} from './fundamental_list/key_list'
 import {search_param_ok, dynamic_style} from './fundamental_list/filter_functions.js'
 
 export default {
@@ -78,7 +78,7 @@ export default {
       sort: 0, // sort -- номер столбца
       sort_desc:false,
       show_cols: false,
-      key_list: key_list,
+      key_list: {},
       list:[],
       list_sorted:[],
       show_search:false,
@@ -98,7 +98,8 @@ export default {
       httpGET({
         url: '/sticker/list',
         success: (data)=>{
-          this.list=data
+          this.list=data.comp_list
+          this.key_list=data.key_list
           this.gen_list_sorted()
         },
         errors: this.errors
@@ -117,8 +118,8 @@ export default {
         if(this.key_list[k].on){
           if(k=='header'){
             // let url=`https://smart-lab.ru${c['fundamental_link']}`
-            let url='/fundamental/'+c.id
-            td_values.push(`<a href="${url}" target="_blank">${c[k]}</a> <sup>${c['sticker']}</sup>`)
+            let url='/fundamental/'+c.sticker
+            td_values.push(`<a href="${url}" target="_blank">${c[k]}</a> <sup>${c.sticker}</sup>`)
           }
           else{
             td_values.push(c[k])
