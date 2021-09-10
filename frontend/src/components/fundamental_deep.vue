@@ -2,6 +2,11 @@
   <h1>{{comp.header}} <sup>{{comp.sticker}}</sup></h1>
   <div сlass="row">
     <a href="" @click.prevent="show_fundamental=!show_fundamental">смотреть фундаментальные показатели</a>
+
+    <div v-for="(l,idx) in extend_links" :key="idx">
+      <a :href="l.link" target="_blank">{{l.title}}</a>
+    </div>
+    
     <div v-if="show_fundamental">
       <table class="table col-md-4">
         <thead>
@@ -76,6 +81,15 @@ export default {
           arr.push(k)
       }
       return arr
+    },
+    extend_links(){
+      if(this.comp_ratios.id){
+        return [
+          {link:`https://ru.investing.com/equities/${this.comp_ratios.code}-ratios`,title:'фундаментал на investing.com'}
+        ]
+      }
+      return []
+
     }
   },
   methods:{
