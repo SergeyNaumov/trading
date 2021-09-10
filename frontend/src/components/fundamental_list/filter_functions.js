@@ -9,7 +9,7 @@ export function search_param_ok(c, SF){
   }
   
   // числовые фильтры
-  let digit_filters=['pe','ps','pb'] // 
+  let digit_filters=['pe','ps','pb', 'roe', 'roa', 'roi'] // 
   for(let f of digit_filters){
     
     if(SF[f][0]!=false){

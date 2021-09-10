@@ -5,8 +5,7 @@ from db import db,db_read,db_write
 from parse.InvestingCom.rates_list import get_key_list
 
 
-
-
+key_list=get_key_list()
 router = APIRouter()
 
 # Список акций 
@@ -29,14 +28,36 @@ async def test_headers():
     
     'data':{
       'comp_list':comp_list,
-      'key_list':get_key_list()
+      'key_list':key_list
     }
   }
 
 # FROM SMARTLAB
 @router.get('/fundamental/{sticker}')
 async def get_fundamental(sticker: str):
-  comp=db.getrow(table='company',where="sticker=%s",values=[sticker])
+  comp=db.query(
+    query=f"""
+      SELECT
+        id, header, sticker
+      FROM
+        company c
+      WHERE c.sticker=%s
+    """,
+    values=[sticker],
+    onerow=1
+  )
+
+  comp_ratios=db.query(
+    query=f"""
+      SELECT
+        *
+      FROM
+        investing_com_stock
+      WHERE sticker=%s
+    """,
+    values=[sticker],
+    onerow=1
+  )
   fin_indicator_list=db.query(
     query=f"SELECT fin_indicator,year,value FROM company_year where company_id={comp['id']}  order by fin_indicator, year, value",
     
@@ -54,7 +75,9 @@ async def get_fundamental(sticker: str):
     'success':True,
     'data':{
       'comp':comp,
+      'comp_ratios':comp_ratios,
       'indicators': indicators,
-      'indicator_list':indicator_list
+      'indicator_list':indicator_list,
+      'key_list':key_list
     }
   }

@@ -4,17 +4,18 @@
 
 <ul class="nav justify-content-end">
   <li class="nav-item">
-    <a href="" class="nav-link" @click.prevent="show_cols=!show_cols"><i class="fas fa-table"></i></a>
+    <a href="" class="nav-link" @click.prevent="show_cols=!show_cols; show_search=false"><i class="fas fa-table"></i></a>
     
   </li>
   <li class="nav-item">
-    <a href="" class="nav-link" @click.prevent="show_search=!show_search"><i class="fas fa-filter"></i></a>
+    <a href="" class="nav-link" @click.prevent="show_search=!show_search; show_cols=false"><i class="fas fa-filter"></i></a>
   </li>
 
 </ul>
     <div class="row show_cols" v-if="show_cols"> 
-      <div class="col-md-2" v-for="k in key_list" :key="k">
-        <input type="checkbox" v-model="k.on" @change="gen_list_sorted"> {{k.header}}
+      <div class="col-md-6" v-for="k in key_list" :key="k">
+        <input type="checkbox" v-model="k.on" @change="gen_list_sorted"> 
+          <span>&nbsp;{{k.header}}</span> 
       </div>
     </div>
     
@@ -40,6 +41,21 @@
           P/B:<br>
           <input type="number" class="form_control" v-model="search_filter.pb[0]" @keyup="gen_list_sorted">  - 
           <input type="number" class="form_control" v-model="search_filter.pb[1]" @keyup="gen_list_sorted">
+        </div>
+        <div class="col-md-3" >
+          ROE:<br>
+          <input type="number" class="form_control" v-model="search_filter.roe[0]" @keyup="gen_list_sorted">  - 
+          <input type="number" class="form_control" v-model="search_filter.roe[1]" @keyup="gen_list_sorted">
+        </div>
+        <div class="col-md-3" >
+          ROA:<br>
+          <input type="number" class="form_control" v-model="search_filter.roa[0]" @keyup="gen_list_sorted">  - 
+          <input type="number" class="form_control" v-model="search_filter.roa[1]" @keyup="gen_list_sorted">
+        </div>
+        <div class="col-md-3" >
+          ROI:<br>
+          <input type="number" class="form_control" v-model="search_filter.roi[0]" @keyup="gen_list_sorted">  - 
+          <input type="number" class="form_control" v-model="search_filter.roi[1]" @keyup="gen_list_sorted">
         </div>
       </div>
     </div>
@@ -87,6 +103,9 @@ export default {
         pe:['0.0001','10'],
         ps:['',''],
         pb:['',''],
+        roe:['7',''],
+        roa:['7',''],
+        roi:['7',''],
       }
     }
   },
@@ -122,7 +141,10 @@ export default {
             td_values.push(`<a href="${url}" target="_blank">${c[k]}</a> <sup>${c.sticker}</sup>`)
           }
           else{
-            td_values.push(c[k])
+            if(c[k])
+              td_values.push(c[k]+(this.key_list[k].percent?'%':''))
+            else
+              td_values.push('-')
           }
           
         }

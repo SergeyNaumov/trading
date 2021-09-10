@@ -1,10 +1,14 @@
 name='name'
 label='label'
 description='description'
+small_desc='small_desc'
 on='on'
+percent='percent'
+body='body'
 LIST=[
   {
     name:'pe',description: 'P/E',
+    body:'коэффициент цена / прибыль',
     label: 'P/E Ratio TTM',
     on: True
   },
@@ -41,43 +45,53 @@ LIST=[
   },
   {
     label:'Gross margin TTM',name:'COGS',
-    description:'выручка компании за вычетом себестоимости реализованных товаров',
-    on: False
+    small_desc: 'COGS',
+    description:'Валовая прибыль',
+    body:'<b>Gross margin</b> - это выручка компании за вычетом себестоимости реализованных товаров (COGS)',
+    on: False,
+    percent: 1
   },
   {
     label:'Gross Margin 5YA',name:'COGS_5ya',
-    description:'Gross Margin 5YA',
-    on: False
+    description:'Валовая прибыль за 5 лет',
+    on: False,
+    percent: 1
   },
   {
     label:'Operating margin TTM',name:'operating_margin',
     description:'Операционная рентабельность',
-    on: True
+    on: True,
+    percent: 1
   },
   {
     label:'Operating margin 5YA',name:'operating_margin_5ya',
     description:'Операционная рентабельность за 5 лет',
-    on: False
+    on: False,
+    percent: 1
   },
   {
     label:'Pretax margin TTM',name:'pentax_margin',
     description:'Рентабельность до налогообложения',
-    on: False
+    on: False,
+    percent: 1
   },
   {
     label:'Pretax margin 5YA',name:'pentax_margin_5ya',
     description:'Рентабельность до налогообложения 5Y',
-    on: False
+    on: False,
+    percent: 1
   },
   {
     label:'Net Profit margin TTM', name:'net_profit_margin',
     description:'Чистая рентабельность',
-    on: True
+    on: True,
+    percent: 1
   },
   {
     label:'Net Profit margin 5YA',name:'net_profit_margin_5ya',
     description:'',
-    on: False
+    on: False,
+    percent: 1
   },
   {
     label:'Revenue/Share TTM',name:'eps',
@@ -120,67 +134,80 @@ LIST=[
 
     label:'Return on Equity TTM',name:'roe',
     description:'ROE',
-    on: True
+    on: True,
+    percent: 1
   },
   {
     label:'Return on Equity 5YA',name:'roe_5ya',
     description:'ROE 5Y',
-    on: False
+    on: False,
+    percent: 1
   },
   {
     label:'Return on Assets TTM',name:'roa',
     description:'ROA',
-    on: True
+    on: True,
+    percent: 1
   },
   { 
     label:'Return on Assets 5YA',name:'roa_5ya',
     description:'ROA 5Y',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'Return on Investment TTM',name:'roi',
     description:'ROI',
-    on: True
+    on: True,
+    percent: 1
   },
   { 
     label:'Return on Investment 5YA',name:'roi_5ya',
     description:'ROI 5Y',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'EPS(MRQ) vs Qtr. 1 Yr. Ago MRQ',name:'EPS_vs_QTR',
     description:'Прибыль на акцию за последний квартал к квартальной год назад ',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'EPS(TTM) vs TTM 1 Yr. Ago TTM',name:'EPS_vs_TTM',
     description:'Прибыль на акцию за последние 12 месяцев к аналогичному периоду год назад TTM',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'5 Year EPS Growth 5YA',name:'5y_eps_growth_5ya',
     description:'Рост прибыли на акцию за 5 лет',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'Sales (MRQ) vs Qtr. 1 Yr. Ago MRQ',name:'sales_vs_qtr_1y_ago',
     description:'Продажи за последний квартал к квартальным год назад',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'Sales (TTM) vs TTM 1 Yr. Ago TTM',name:'sales_vs_ttm_1y_ago',
     description:'Продажи за последние 12 месяцев к аналогичному периоду год назад',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'5 Year Sales Growth 5YA',name:'sales_growth_5y',
     description:'Рост продаж за последние 5 лет',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'5 Year Capital Spending Growth 5YA',name:'capital_spending_growth_5y',
     description:'Рост капитальных расходов за последние 5 лет',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'Quick Ratio MRQ',name:'quick_ratio',
@@ -195,12 +222,14 @@ LIST=[
   { 
     label:'LT Debt to Equity MRQ',name:'ltde',
     description:'коэффициент долгосрочных обязательств по отношению к собственному или акционерному капиталу',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'Total Debt to Equity MRQ',name:'de',
     description:'D/E',
-    on: False
+    on: False,
+    percent: 1
   },
   { 
     label:'Asset Turnover TTM',name:'asset_turnover',
@@ -229,25 +258,31 @@ LIST=[
   },
   { 
     label:'Dividend Yield ANN',name:'dividend_yield',
-    description:'Dividend Yield',
+    description:'Див. доходность (год)',
+    percent:True,
     on: False
   },
   { 
     label:'Dividend Yield 5 Year Avg. 5YA',name:'dividend_yield_5ya',
-    description:'Dividend Yield 5 Year Avg',
+    description:'Див. доходность, средняя за 5 лет',
+    percent:True,
     on: False
   },
   { 
     label:'Dividend Growth Rate ANN',name:'dividend_growth_rate',
     description:'Скорость дивидендного роста',
+    percent:True,
     on: False
   },
   { 
     label:'Payout Ratio TTM',name:'dpr',
     description:'DPR',
+    percent:True,
     on: False
   }
 ]
+
+
 
 def get_rates_dict():
   D={}
@@ -266,9 +301,20 @@ def get_key_list(): # Возвращяет список параметров в 
       'on':True
     }
   }
+
   for l in LIST:
+    per=False
+    if percent in l and l[percent]:
+      per=True
+    b=''
+    if body in l:
+      b=l[body]
+
     out_dict[l['name']]={
       'header':l['description'],
+      'percent':per,
+      'body':b,
       'on':l['on']
     }
+    
   return out_dict
